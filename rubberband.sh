@@ -16,10 +16,10 @@ then
     echo
     if [ "$confirm" != "y" ]
     then
-    	echo
+	echo
 	echo -e "\e[10;35mABORT!\e[0m"
-    	echo
-    	exit 1
+	echo
+	exit 1
     fi
 fi
 
@@ -45,20 +45,18 @@ touch $outfile
 
 commands=('_cluster/health?pretty' '_mapping?pretty' '_settings?pretty' '_cluster/state?pretty'  '_cluster/settings?pretty' '_stats?all&pretty' '_nodes?all&pretty' '_nodes/stats?all&pretty')
 
-echo "##################################" > $outfile
-echo "ElasticSearch Cluster Information:" >> $outfile
-echo "##################################" >> $outfile
-echo >> $outfile
+echo "{" > $outfile
 
 for command in "${commands[@]}"
     do
-    echo "$command:" >> $outfile
-    echo "############################################################" >> $outfile
+    echo "\"$command\" : " >> $outfile
     echo >> $outfile
     curl -s "localhost:9200/$command" >> $outfile
     echo >> $outfile
-    echo >> $outfile
+    echo "," >> $outfile
 done
+
+echo "}" >> $outfile
 
 echo -e "\e[1;32mAll done!\e[0m"
 echo
