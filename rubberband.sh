@@ -1,6 +1,6 @@
 #!/bin/bash
 
-commands=('_cluster/health?pretty' '_mapping?pretty' '_settings?pretty' '_cluster/state?pretty'  '_cluster/settings?pretty' '_stats?all&pretty' '_nodes?all&pretty' '_nodes/stats?all&pretty')
+commands=('_cluster/health?pretty' '_mapping?pretty' '_settings?pretty' '_cluster/state?pretty'  '_cluster/settings?pretty' '_stats?all&pretty' '_nodes?all&pretty' '_nodes/stats?all&pretty' '_stats/fielddata/*?pretty' '_nodes/stats/indices/fielddata/*?pretty')
 
 echo "{"
 
